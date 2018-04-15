@@ -17,8 +17,31 @@
 * 設定密碼 : \password xxxxxx
 
 ### 創建新資料 :
-* 先用命令介面登入進去後，CREATE DATABASE myexampledb OWNER user
+* 先用命令介面登入進去後，CREATE DATABASE myexampledb OWNER user 或直接在shell中 createdb -T template0 mydb -p 5432
+* 丟掉資料庫 : dropdb -h localhost -p 5432 -U user databases
 
+### 數據庫操作 : 
+* 創建新表 : CREATE TABLE user_tbl(name VARCHAR(20), signup_date DATE);
+* 插入數據 : INSERT INTO user_tbl(name, signup_date) VALUES('ting', '2013-12-22');
+* 選擇紀錄 : SELECT * FROM user_tbl;
+
+### 用python3 連接 PostgreSQL
+* 進去 pgsql_data/ 修改 pg_hba.conf 新增一條存去規則 : host all all 0.0.0.0/0 password
+* 修改 postgresql.conf : listen_addresses = * 及 port = 5432
+* 重新啟動資料庫
+* pip install psycopg2 安裝模塊
+* 如何用python3 連接資料請參考postgres_connect.ipynb
+
+
+### 相關常見指令 : 
+* \h：查看SQL命令的解釋，比如\h select。
+* \?：查看psql命令列表。
+* \l：列出所有數據庫。
+* \c [database_name]：連接其他數據庫。
+* \d：列出當前數據庫的所有表格。
+* \d [table_name]：列出某一張表格結構。
+* \du ：列出所有用戶
+\conninfo：列出當前數據庫連接訊息
 
 
 
